@@ -5,7 +5,7 @@ class Node:
     # array!). You see, knowing data-structures IS IMPORTANT!
     __slots__ = ['prev', 'item', 'next']
 
-    def __init__(self, prev, item, next):
+    def __init__(self, prev= None, item= None, next= None): # hafa default sem None í bili ef það má
         self.prev = prev
         self.item = item
         self.next = next

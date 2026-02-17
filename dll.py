@@ -13,6 +13,7 @@ class Position:
 
     def __init__(self, node):
         self.node = node
+        # self.container = container
 
 
 class DLList:
@@ -22,41 +23,53 @@ class DLList:
     #
 
     def __init__(self):
-        ...
+        self.head = Node()
+        self.tail= Node()
+        #Erum currently með sentinal nodes, held ég amk.
+        self.head.next = self.tail
+        self.tail.prev = self.head
+        self.current = self.tail    # þarf ?
+        self.size = 0
+        self.position = Position(self.head)
 
-    def __iter__(self):
+    def __iter__(self) -> None:
         """
         Implemented as part of the iterator interface to allow: for ... in A
         :return: Iterator object.
         """
-        ...
-
-    def __str__(self):
+        return NodeIterator(self.head)
+    
+    def __str__(self) -> str:
         """
         String representation of the list.
         Time complexity: O(n)
         :return: The string representation.
         """
-        ...
-        return ""
 
-    def __len__(self):
+        elems = []      # má þetta ?
+        node = self.head
+        while node is not None:
+            elems.append(str(node.item))
+            node = node.next
+        return '[' + ', '.join(elems) + ']'
+
+    def __len__(self) -> int:
         """
         Returns the number of elements in the list.
         Time complexity: O(1)
         :return: Number of elements in the list.
         """
-        ...
-        return 0
 
-    def is_empty(self):
+        return self.size
+
+    def is_empty(self) -> bool:
         """
         Checks if list is empty.
         Time complexity: O(1)
         :return: True if empty, otherwise false
         """
-        ...
-        return True
+
+        return self.size == 0
 
     def get_at(self, pos: Position) -> object:
         """
@@ -64,8 +77,13 @@ class DLList:
         :param pos: Position to insert
         :return: Element
         """
-        ...
-        return None
+        # if self.size == 0:
+        #     raise IndexError("DLL is empty")
+        # if pos.node.item is None:   # ??
+        #     raise IndexError("Nothing there")
+        
+        return pos.node.item
+
 
     def insert_after(self, pos: Position, item: object) -> Position:
         """
@@ -74,7 +92,24 @@ class DLList:
         :param item:Element to insert
         :return: Position of inserted element
         """
-        ...
+        
+        # left_node = self.get_at(pos)
+        # the_right_one = left_node.next
+
+        # new_node = Node(item)
+        
+        # left_node.next = new_node
+
+        # new_node.prev = left_node
+        # new_node.next = the_right_one
+
+        # the_right_one.prev = new_node
+        original = self.__validator(pos)
+        #return self.__insert_beween(item,original.prev, original) #Sennilega vitlaus notkun
+
+        return self.__insert_beween(item,original,original.next) #Sennilega vitlaus notkun
+
+    
 
     def insert_before(self, pos: Position, item: object) -> Position:
         """
@@ -83,7 +118,10 @@ class DLList:
         :param item:Element to insert
         :return: Position of inserted element
         """
-        ...
+        original = self.__validator(pos)
+        #return self.__insert_beween(item,original.prev, original) #Sennilega vitlaus notkun
+
+        return self.__insert_beween(item,original.prev,original) #Sennilega vitlaus notkun
 
     def remove(self, pos: Position) -> object:
         """
@@ -127,10 +165,44 @@ class DLList:
 
     def next_pos(self, pos: Position) -> Position | None:
         """
-         Return position following 'pos', or None if already at end of list.
-         """
+        Return position following 'pos', or None if already at end of list.
+        """
         ...
         return None
+
+    def __make_position(self, node: Node):
+        if node is self.head or node is self.tail:
+            return None
+        return Position(node)
+
+    def __insert_beween(self, item, predecessor: Node, successor: Node):
+
+        new_node = Node(predecessor, item, successor)
+
+        new_node.prev = predecessor
+        new_node.next = successor
+
+        successor.prev = new_node
+        predecessor.next = new_node
+
+        
+
+        self.size += 1
+        return self.__make_position(new_node)
+    
+    def __validator(self, pos: Position) -> Node:
+
+        if not isinstance(pos, Position):
+            raise TypeError("the position must me a Position type")
+        
+        # if pos.container is not self:
+        #     raise ValueError("the position does not belong to this container")
+        
+        if pos.node.next is None:
+            raise ValueError("the position is no longer valid")
+        
+        return pos.node
+
 
     #
     # End of fundamental section.
