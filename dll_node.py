@@ -9,3 +9,29 @@ class Node:
         self.prev = prev
         self.item = item
         self.next = next
+
+
+        head_node
+nodes_gildi = A55 --> B99 --> C52--> 66 --> 3 --> 55 --
+        <-------------------------------------
+
+shittið = nodes_gildi
+
+pos(B)
+return shittið
+
+
+
+
+
+
+
+
+
+
+
+
+# listinn = [1, 2, 3, 4, 5, 6, 7, 8]
+# node = listinn[5]
+
+# return node
