@@ -81,7 +81,14 @@ class SLList:
         :param item: element to insert
         :return: None
         """
-        ...
+        old_front = self._head
+        
+        new_node = Node(item, old_front)
+
+        self._head = new_node
+        self._len += 1
+        
+        return new_node
 
     def pop_front(self):
         """
@@ -89,7 +96,15 @@ class SLList:
         Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
-        ...
+        if self._head is None:
+            raise IndexError("The SLL is empty")
+        
+        old_front = self._head
+
+        self._head = self._head.next
+        self._len -= 1
+
+        return old_front
 
     def push_back(self, item):
         """
@@ -98,7 +113,15 @@ class SLList:
         :param item: element to insert
         :return: None
         """
-        ...
+        
+        old_back = self._tail
+
+        new_node = Node(item, old_back)
+
+        self._tail = new_node
+        self._len += 1
+
+        return new_node
 
     def pop_back(self):
         """
@@ -106,4 +129,12 @@ class SLList:
         Time complexity: O(n)
         :return: None, but trows an exception if list empty.
         """
-        ...
+        if self._tail is None:
+            raise IndexError("The SLL is empty")
+        
+        old_back = self._tail
+
+        self._tail = None       # örugglega ekki rétt ef þetta á að vera O(n)
+        self._len -= 1
+
+        return old_back
