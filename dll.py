@@ -2,7 +2,8 @@
 # Gagnaskipan.
 # Double-Linked-List
 # Student(s):
-#  - ... your name ...
+# Guðmundur A. Magnússon
+#  Hafþór Haugen
 #
 from dll_node import Node
 from iterator import NodeIterator
