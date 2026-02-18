@@ -2,7 +2,8 @@
 # Gagnaskipan.
 # Single-Linked-List
 # Student(s):
-#  - ... your name ...
+#  Guðmundur A. Magnússon
+#  Hafþór Haugen
 #
 from sll_node import Node
 from iterator import NodeIterator
@@ -82,18 +83,21 @@ class SLList:
         :return: None
         """
         old_front = self._head
-        
+    
         new_node = Node(item, old_front)
 
         self._head = new_node
+
+        if self._len == 0:
+            self._tail = new_node
+
         self._len += 1
-        
         return new_node
 
     def pop_front(self):
         """
         Remove an element from the front of the list.
-        Time complexity: O(1)
+        Time complexity: O(1)2
         :return: None, but trows an exception if list empty.
         """
         if self._head is None:
@@ -116,11 +120,17 @@ class SLList:
         
         old_back = self._tail
 
-        new_node = Node(item, old_back)
+        # laga oldback.next
+        new_node = Node(item, None)
+        if self._len != 0:
+            old_back.next = new_node
 
         self._tail = new_node
-        self._len += 1
 
+        if self._len == 0:
+            self._head = new_node
+
+        self._len += 1
         return new_node
 
     def pop_back(self):
@@ -132,9 +142,15 @@ class SLList:
         if self._tail is None:
             raise IndexError("The SLL is empty")
         
-        old_back = self._tail
 
-        self._tail = None       # örugglega ekki rétt ef þetta á að vera O(n)
+        current_node = self._head
+        # old_back = self._tail
+
+        while current_node != self._tail:
+            current_node = current_node.next
+            if current_node.next == self._tail:
+                break
+        self._tail = current_node
+        self._tail.next = None
+
         self._len -= 1
-
-        return old_back
