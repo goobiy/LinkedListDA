@@ -130,7 +130,17 @@ class DLList:
         :param pos: Position of element to remove.
         :return: Element deleted
         """
-        ...
+        self.__validator(pos)
+        
+        node_to_delete = self.get_at(pos)
+        prev_node = node_to_delete.prev
+        next_node = node_to_delete.next
+
+        prev_node.next = next_node
+        next_node.prev = prev_node
+
+        self.size =- 1
+
         return None
 
     def replace(self, pos: Position, item: object) -> object:
