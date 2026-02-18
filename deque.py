@@ -13,7 +13,7 @@ class Deque:
         """
         Constructor.
         """
-        ...
+        self.list = lst
 
     def __len__(self):
         """
@@ -21,7 +21,7 @@ class Deque:
         :return: Number of elements.
         """
         ...
-        return 0
+        return len(self.list)
 
     def __str__(self):
         """
@@ -29,46 +29,46 @@ class Deque:
         :return: String representation.
         """
         ...
-        return ""
+        return str(self.list)
 
     def is_empty(self):
         """
         Returns True if the deque is empty, otherwise False.
         """
         ...
-        return True
+        return len(self.list) == 0
 
     def front(self):
-        ...
+        return self.list.front()
 
     def back(self):
-        ...
+        return self.list.back()
 
     def append(self, item):
         """
         Inserts the element to the right (top) of the deque.
         :return: None
         """
-        ...
+        self.list.push_back(item)
 
     def appendleft(self, item):
         """
         Inserts the element to the left (bottom) of the deque.
         :return: None
         """
-        ...
+        self.list.push_front(item)
 
     def pop(self):
         """
         Removes the element at the right (top) of the deque.
         :return: None. Raises an exception if empty.
         """
-        ...
+        self.list.pop_back()
 
     def popleft(self):
         """
         Removes the element at the left (bottom) of the deque.
         :return: None. Raises an exception if empty.
         """
-        ...
+        self.list.pop_front()
 

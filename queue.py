@@ -13,46 +13,48 @@ class Queue:
         """"
         Constructor.
         """
-        ...
+        self.list = lst
 
     def __len__(self):
         """"
         Returns the number of elements in the queue.
         """
         ...
-        return 0
+        return len(self.list)
 
     def __str__(self):
         """
         Returns the string representation of the queue.
         """
-        ...
-        return ""
+        
+        return str(self.list)
 
     def is_empty(self):
         """
         Returns True if queue is empty, otherwise False.
         """
-        ...
-        return True
+        
+        return len(self.list) == 0
 
     def front(self):
         """
         Returns the front element of the queue (without removing it).
         :return: If non-empty, the front element of the queue, otherwise throws exception.
         """
-        ...
-        return None
+        if len(self.list) == 0:
+            raise Exception("List is empty")
+        
+        return self.list.front()
 
     def enqueue(self, item):
         """
         Inserts the element to the back of the queue.
         """
-        ...
+        self.list.push_back(item)
 
     def dequeue(self):
         """
         Removes the element at the front of the queue (without returning)..
         """
-        ...
+        self.list.pop_front()
 
