@@ -7,12 +7,12 @@
 from dll_node import Node
 from iterator import NodeIterator
 
-
 class Position:
     __slots__ = ['node']
 
     def __init__(self, node):
         self.node = node
+        # self.container = container
 
 
 class DLList:
@@ -26,9 +26,7 @@ class DLList:
         self.tail= Node()
         #Erum currently með sentinal nodes, held ég amk.
         self.head.next = self.tail
-
         self.tail.prev = self.head
-
         self.current = self.tail    # þarf ?
         self.size = 0
         self.position = Position(self.head)
@@ -139,9 +137,16 @@ class DLList:
         prev_node.next = next_node
         next_node.prev = prev_node
 
-        self.size =- 1
 
-        return None
+
+        self.size -= 1
+
+
+        node_to_delete.prev = None
+        node_to_delete.next = None
+
+
+        return node_to_delete.item
 
     def replace(self, pos: Position, item: object) -> object:
         """
@@ -157,22 +162,30 @@ class DLList:
         """
         Return position of the element at the head of the list if list non-empty, or None if list is empty.
         """
-        ...
-        return None
+        if self.head.item == None:
+            return None
+        return self.head.item
+        
 
     def back_pos(self) -> Position | None:
         """
         Return position of the element at the end of list if list non-empty, or None if list is empty.
         """
         ...
-        return None
-
+        if self.tail.item == None:
+            return None
+        return self.tail.item
+        
     def prev_pos(self, pos: Position) -> Position | None:
         """
         Return position before 'pos', or None if already at front of list.
         """
-        ...
-        return None
+        node = self.get_at(pos)
+        prev_node = node.prev
+        
+        if prev_node == None:
+            return None
+        return prev_node
 
     def next_pos(self, pos: Position) -> Position | None:
         """
@@ -209,7 +222,7 @@ class DLList:
         # if pos.container is not self:
         #     raise ValueError("the position does not belong to this container")
         
-        if pos.node is None:
+        if pos.node.next is None:
             raise ValueError("the position is no longer valid")
         
         return pos.node
