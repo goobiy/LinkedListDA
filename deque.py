@@ -2,8 +2,10 @@
 # Gagnaskipan.
 # Deque implementation
 # Student(s):
-#  - ... your name ...
-#
+# Guðmundur Alexander Magnússon
+# Hafþór Haugen
+# Olgeir Otri Engilbertsson
+
 import sll
 import dll
 
@@ -35,13 +37,15 @@ class Deque:
         """
         Returns True if the deque is empty, otherwise False.
         """
-        ...
+
         return len(self.list) == 0
 
     def front(self):
+
         return self.list.front()
 
     def back(self):
+        
         return self.list.back()
 
     def append(self, item):

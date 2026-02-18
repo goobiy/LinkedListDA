@@ -25,7 +25,7 @@ def match_brackets(s: str) -> bool:
 
     for i in s:
         if stack.is_empty() and i in ")]}":
-            continue
+            return False
         if i in "([{":
             stack.push(i)
         else:
@@ -33,17 +33,22 @@ def match_brackets(s: str) -> bool:
                 if "(" == stack.top():
                     stack.pop()
                     continue
+                else:
+                    return False    # a mismatch like [)
             elif i == "]":
                 if "[" == stack.top():
                     stack.pop()
                     continue
+                else:
+                    return False
             elif i == "}":
                 if "{" == stack.top():
                     stack.pop()
                     continue
+                else:
+                    return False
 
     return stack.is_empty()
-
 
 def main():
     name = 'brackets.txt'
@@ -60,4 +65,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

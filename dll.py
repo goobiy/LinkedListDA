@@ -21,14 +21,13 @@ class DLList:
     # Beginning of fundamental section.
     #
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.head = Node()
         self.tail= Node()
-        self.head.next = self.tail
 
+        self.head.next = self.tail
         self.tail.prev = self.head
 
-        self.current = self.tail
         self.size = 0
         self.position = Position(self.head)
 
@@ -93,7 +92,7 @@ class DLList:
         """
         original = self.__validator(pos)
 
-        return self.__insert_beween(item,original,original.next)
+        return self.__insert_beween(original, item, original.next)
 
     
 
@@ -106,7 +105,7 @@ class DLList:
         """
         original = self.__validator(pos)
 
-        return self.__insert_beween(item,original.prev,original)
+        return self.__insert_beween(original.prev, item, original)
 
     def remove(self, pos: Position) -> object:
         """
@@ -147,6 +146,8 @@ class DLList:
         """
         Return position of the element at the head of the list if list non-empty, or None if list is empty.
         """
+        if self.size == 0:
+            return None
         return Position(self.head.next)
 
 
@@ -154,6 +155,8 @@ class DLList:
         """
         Return position of the element at the end of list if list non-empty, or None if list is empty.
         """
+        if self.size == 0:
+            return None
         return Position(self.tail.prev)
         
     def prev_pos(self, pos: Position) -> Position | None:
@@ -183,7 +186,7 @@ class DLList:
             return None
         return Position(node)
 
-    def __insert_beween(self, item, predecessor: Node, successor: Node):
+    def __insert_beween(self, predecessor: Node, item, successor: Node):
 
         new_node = Node(predecessor, item, successor)
 
@@ -284,4 +287,3 @@ class DLList:
         tail_pos = Position(self.tail.prev)
 
         self.remove(tail_pos)
-

@@ -2,8 +2,10 @@
 # Gagnaskipan.
 # Deque implementation
 # Student(s):
-#  - ... your name ...
-#
+# Guðmundur Alexander Magnússon
+# Hafþór Haugen
+# Olgeir Otri Engilbertsson
+
 import sll
 import dll
 
@@ -19,7 +21,7 @@ class Queue:
         """"
         Returns the number of elements in the queue.
         """
-        ...
+        
         return len(self.list)
 
     def __str__(self):
@@ -42,7 +44,7 @@ class Queue:
         :return: If non-empty, the front element of the queue, otherwise throws exception.
         """
         if len(self.list) == 0:
-            raise Exception("List is empty")
+            raise IndexError("Queue is empty")
         
         return self.list.front()
 
@@ -57,4 +59,3 @@ class Queue:
         Removes the element at the front of the queue (without returning)..
         """
         self.list.pop_front()
-

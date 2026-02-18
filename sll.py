@@ -4,7 +4,8 @@
 # Student(s):
 #  Guðmundur A. Magnússon
 #  Hafþór Haugen
-#
+#  Olgeir Otri Engilbertsson
+
 from sll_node import Node
 from iterator import NodeIterator
 
@@ -75,7 +76,7 @@ class SLList:
             raise IndexError('back called on an empty list')
         return self._tail.item
 
-    def push_front(self, item):
+    def push_front(self, item) -> None:
         """
         Insert an element to front of the list.
         Time complexity: O(1)
@@ -92,25 +93,26 @@ class SLList:
             self._tail = new_node
 
         self._len += 1
-        return new_node
+        return
 
-    def pop_front(self):
+    def pop_front(self) -> None:
         """
         Remove an element from the front of the list.
-        Time complexity: O(1)2
+        Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
         if self._head is None:
             raise IndexError("The SLL is empty")
         
-        old_front = self._head
-
         self._head = self._head.next
+
         self._len -= 1
 
-        return old_front
+        if self._head is None:
+            self._tail = None
+        return
 
-    def push_back(self, item):
+    def push_back(self, item) -> None:
         """
         Insert an element to back of the list.
         Time complexity: O(1)
@@ -120,7 +122,6 @@ class SLList:
         
         old_back = self._tail
 
-        # laga oldback.next
         new_node = Node(item, None)
         if self._len != 0:
             old_back.next = new_node
@@ -131,9 +132,9 @@ class SLList:
             self._head = new_node
 
         self._len += 1
-        return new_node
+        return
 
-    def pop_back(self):
+    def pop_back(self) -> None:
         """
         Remove an element from the back of the list.
         Time complexity: O(n)
@@ -142,15 +143,19 @@ class SLList:
         if self._tail is None:
             raise IndexError("The SLL is empty")
         
+        if self._head is self._tail:
+            self._head = None
+            self._tail = None
+            self._len = 0
+            return
 
         current_node = self._head
-        # old_back = self._tail
-
-        while current_node != self._tail:
+        # Iterating towards the last element in the SLL
+        while current_node.next != self._tail:
             current_node = current_node.next
-            if current_node.next == self._tail:
-                break
-        self._tail = current_node
-        self._tail.next = None
 
+        
+        current_node.next = None
+        self._tail = current_node
         self._len -= 1
+        return
