@@ -16,6 +16,22 @@ pos_4 = l.insert_after(pos_2,"PLS olgur")
 #[None,Olgur,Sigma,PLS olgur,None]
 
 print(l)
+
+# l.remove(pos_2)
+# print(l)
+
+# print(l.front())
+# print(l.back())
+
+# l.push_front("ég veit ekki")
+# print(l)
+# l.push_back("ég veit")
+# print(l)
+l.pop_back()
+print(l)
+l.pop_front()
+print(l)
+
 # pos_3 = l.insert_before(pos_1,"Sigma_W")
 # l.insert_before(pos_2,"Yippy")
 # print(l)
@@ -27,11 +43,11 @@ print(l)
 
 # print(l.get_at(head_pos))
 
-pos_0 = Position(l.head)
+# pos_0 = Position(l.head)
 
-print(pos_0.node is l.head, pos_0.node is l.tail)
-print(pos_0.node.prev)
-print(pos_0.node.item)
+# print(pos_0.node is l.head, pos_0.node is l.tail)
+# print(pos_0.node.prev)
+# print(pos_0.node.item)
 
 
 

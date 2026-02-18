@@ -50,6 +50,9 @@ class DLList:
         elems = []      # má þetta ?
         node = self.head
         while node is not None:
+            if node.item is None:
+                node = node.next
+                continue
             elems.append(str(node.item))
             node = node.next
         return '[' + ', '.join(elems) + ']'
@@ -132,22 +135,18 @@ class DLList:
         """
         self.__validator(pos)
         
-        node_to_delete = self.get_at(pos)
+        node_to_delete = pos.node
+
         prev_node = node_to_delete.prev
         next_node = node_to_delete.next
 
         prev_node.next = next_node
         next_node.prev = prev_node
-
-
-
-        self.size -= 1
-
-
         node_to_delete.prev = None
         node_to_delete.next = None
 
 
+        self.size -= 1
         return node_to_delete.item
 
     def replace(self, pos: Position, item: object) -> object:
@@ -164,37 +163,36 @@ class DLList:
         """
         Return position of the element at the head of the list if list non-empty, or None if list is empty.
         """
-        if self.head.item == None:
-            return None
-        return self.head.item
-        
+        return Position(self.head.next)
+
 
     def back_pos(self) -> Position | None:
         """
         Return position of the element at the end of list if list non-empty, or None if list is empty.
         """
-        ...
-        if self.tail.item == None:
-            return None
-        return self.tail.item
+        return Position(self.tail.prev)
         
     def prev_pos(self, pos: Position) -> Position | None:
         """
         Return position before 'pos', or None if already at front of list.
         """
-        node = self.get_at(pos)
-        prev_node = node.prev
+        prev_node = pos.node.prev
         
-        if prev_node == None:
+        if prev_node is None:
             return None
-        return prev_node
+
+        return Position(prev_node)
 
     def next_pos(self, pos: Position) -> Position | None:
         """
         Return position following 'pos', or None if already at end of list.
         """
-        ...
-        return None
+        next_node = pos.node.next
+
+        if next_node is None:
+            return None
+        
+        return Position(next_node)
 
     def __make_position(self, node: Node):
         if node is self.head or node is self.tail:
@@ -243,7 +241,7 @@ class DLList:
         :return: If list non-empty, the front element, otherwise trows an exception.
         """
         ...
-        return None
+        return self.head.next.item
 
     def back(self):
         """
@@ -251,8 +249,7 @@ class DLList:
         Time complexity: O(1)
         :return: If list non-empty, the back element, otherwise trows an exception.
         """
-        ...
-        return None
+        return self.tail.prev.item
 
     def push_front(self, item):
         """
@@ -261,7 +258,9 @@ class DLList:
         :param item: element to insert
         :return: None
         """
-        ...
+        head_pos = Position(self.head)
+
+        self.insert_after(head_pos, item)
 
     def pop_front(self):
         """
@@ -269,7 +268,10 @@ class DLList:
         Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
-        ...
+        if self.is_empty():
+            raise IndexError("The list is empty")
+        
+        self.remove(Position(self.head.next))
 
     def push_back(self, item):
         """
@@ -278,7 +280,10 @@ class DLList:
         :param item: element to insert
         :return: None
         """
-        ...
+        tail_pos = Position(self.tail)
+
+        self.insert_before(tail_pos, item)
+
 
     def pop_back(self):
         """
@@ -286,4 +291,10 @@ class DLList:
         Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
-        ...
+        if self.is_empty():
+            raise IndexError("The list is empty")
+        
+        tail_pos = Position(self.tail.prev)
+
+        self.remove(tail_pos)
+
