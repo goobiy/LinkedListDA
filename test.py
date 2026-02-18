@@ -7,11 +7,15 @@ from dll import Position, DLList
 l = DLList()
 
 
-# pos_1 = Position(l.head)  WTF ??
+pos_1 = Position(l.tail) # WTF ??
 
 # l.insert_before(pos_0,25)
-# pos_2 = l.insert_before(pos_1,"Sigma")
-# print(l)
+pos_2 = l.insert_before(pos_1,"Sigma")
+pos_3 = l.insert_before(pos_2,"Olgur")
+pos_4 = l.insert_after(pos_2,"PLS olgur")
+#[None,Olgur,Sigma,PLS olgur,None]
+
+print(l)
 # pos_3 = l.insert_before(pos_1,"Sigma_W")
 # l.insert_before(pos_2,"Yippy")
 # print(l)
