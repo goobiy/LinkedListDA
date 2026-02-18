@@ -2,7 +2,7 @@
 # Gagnaskipan.
 # Double-Linked-List
 # Student(s):
-#  Hafþór Haugen og Guðmundur Alex Magnússon
+#  Hafþór Haugen, Guðmundur Alex Magnússon og Olgeir Otri Engilbertsson
 #
 from dll_node import Node
 from iterator import NodeIterator
@@ -24,12 +24,11 @@ class DLList:
     def __init__(self):
         self.head = Node()
         self.tail= Node()
-        #Erum currently með sentinal nodes, held ég amk.
         self.head.next = self.tail
 
         self.tail.prev = self.head
 
-        self.current = self.tail    # þarf ?
+        self.current = self.tail
         self.size = 0
         self.position = Position(self.head)
 
@@ -47,7 +46,7 @@ class DLList:
         :return: The string representation.
         """
 
-        elems = []      # má þetta ?
+        elems = []
         node = self.head
         while node is not None:
             if node.item is None:
@@ -81,11 +80,7 @@ class DLList:
         :param pos: Position to insert
         :return: Element
         """
-        # if self.size == 0:
-        #     raise IndexError("DLL is empty")
-        # if pos.node.item is None:   # ??
-        #     raise IndexError("Nothing there")
-        
+
         return pos.node.item
 
 
@@ -96,22 +91,9 @@ class DLList:
         :param item:Element to insert
         :return: Position of inserted element
         """
-        
-        # left_node = self.get_at(pos)
-        # the_right_one = left_node.next
-
-        # new_node = Node(item)
-        
-        # left_node.next = new_node
-
-        # new_node.prev = left_node
-        # new_node.next = the_right_one
-
-        # the_right_one.prev = new_node
         original = self.__validator(pos)
-        #return self.__insert_beween(item,original.prev, original) #Sennilega vitlaus notkun
 
-        return self.__insert_beween(item,original,original.next) #Sennilega vitlaus notkun
+        return self.__insert_beween(item,original,original.next)
 
     
 
@@ -123,9 +105,8 @@ class DLList:
         :return: Position of inserted element
         """
         original = self.__validator(pos)
-        #return self.__insert_beween(item,original.prev, original) #Sennilega vitlaus notkun
 
-        return self.__insert_beween(item,original.prev,original) #Sennilega vitlaus notkun
+        return self.__insert_beween(item,original.prev,original)
 
     def remove(self, pos: Position) -> object:
         """
@@ -156,8 +137,11 @@ class DLList:
         :param item: New element to replace the existing one.
         :return: The element replaced (formerly at position)
         """
-        ...
-        return None
+        old_item = pos.node.item
+
+        pos.node.item = item
+
+        return old_item
 
     def front_pos(self) -> Position | None:
         """
@@ -240,7 +224,8 @@ class DLList:
         Time complexity: O(1)
         :return: If list non-empty, the front element, otherwise trows an exception.
         """
-        ...
+        if self.is_empty():
+            raise IndexError("The DLL is empty")
         return self.head.next.item
 
     def back(self):
@@ -249,6 +234,8 @@ class DLList:
         Time complexity: O(1)
         :return: If list non-empty, the back element, otherwise trows an exception.
         """
+        if self.is_empty():
+            raise IndexError("The DLL is empty")
         return self.tail.prev.item
 
     def push_front(self, item):

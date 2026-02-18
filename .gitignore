@@ -1,2 +1,5 @@
 __pycache__/
 tester.py
+replace_tester.py
+smoltester.py
+bigtester.py
