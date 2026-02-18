@@ -2,11 +2,11 @@
 # Gagnaskipan.
 # Double-Linked-List
 # Student(s):
-# Guðmundur A. Magnússon
-#  Hafþór Haugen
+#  Hafþór Haugen og Guðmundur Alex Magnússon
 #
 from dll_node import Node
 from iterator import NodeIterator
+
 
 class Position:
     __slots__ = ['node']

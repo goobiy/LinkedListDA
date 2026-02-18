@@ -7,10 +7,9 @@ from dll import Position, DLList
 l = DLList()
 
 
-pos_0 = Position(l.tail)
 # pos_1 = Position(l.head)  WTF ??
 
-l.insert_before(pos_0,25)
+# l.insert_before(pos_0,25)
 # pos_2 = l.insert_before(pos_1,"Sigma")
 # print(l)
 # pos_3 = l.insert_before(pos_1,"Sigma_W")
@@ -24,6 +23,7 @@ l.insert_before(pos_0,25)
 
 # print(l.get_at(head_pos))
 
+pos_0 = Position(l.head)
 
 print(pos_0.node is l.head, pos_0.node is l.tail)
 print(pos_0.node.prev)

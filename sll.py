@@ -97,7 +97,7 @@ class SLList:
     def pop_front(self):
         """
         Remove an element from the front of the list.
-        Time complexity: O(1)
+        Time complexity: O(1)2
         :return: None, but trows an exception if list empty.
         """
         if self._head is None:
