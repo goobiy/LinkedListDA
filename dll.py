@@ -7,12 +7,12 @@
 from dll_node import Node
 from iterator import NodeIterator
 
+
 class Position:
     __slots__ = ['node']
 
     def __init__(self, node):
         self.node = node
-        # self.container = container
 
 
 class DLList:
@@ -26,7 +26,9 @@ class DLList:
         self.tail= Node()
         #Erum currently með sentinal nodes, held ég amk.
         self.head.next = self.tail
+
         self.tail.prev = self.head
+
         self.current = self.tail    # þarf ?
         self.size = 0
         self.position = Position(self.head)
@@ -222,7 +224,7 @@ class DLList:
         # if pos.container is not self:
         #     raise ValueError("the position does not belong to this container")
         
-        if pos.node.next is None:
+        if pos.node is None:
             raise ValueError("the position is no longer valid")
         
         return pos.node
