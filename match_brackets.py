@@ -17,8 +17,30 @@ def match_brackets(s: str) -> bool:
         "]b ["   <--- close with ] before opening
         "{{ a }"   <-- missing }
     """
-    ...
-    return False
+    count_1 = 0
+    count_2 = 0
+    count_3 = 0
+    count_4 = 0
+    count_5 = 0
+    count_6 = 0
+
+    for i in s:
+        # i = str(i)
+        # if i == "(":
+        #     count_1 += 1
+        # elif i == ")":
+        #     count_2 += 1
+        # elif i == "[":
+        #     count_3 += 1
+        # elif i == "]":
+        #     count_4 += 1
+        # elif i == "{":
+        #     count_5 += 1
+        # elif i == "}":
+        #     count_6 += 1
+
+        return (count_1 == count_2) and (count_3 == count_4) and (count_5 == count_6)
+
 
 def main():
     name = 'brackets.txt'

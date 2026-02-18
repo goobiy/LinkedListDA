@@ -2,35 +2,40 @@ from sll import SLList
 from sll_node import Node
 from iterator import NodeIterator
 from dll import Position, DLList
-
+from queue import Queue
 
 l = DLList()
 
+# q = Queue(l)
 
-pos_1 = Position(l.tail) # WTF ??
+# q.enqueue(5)
+# print(q)
 
-# l.insert_before(pos_0,25)
-pos_2 = l.insert_before(pos_1,"Sigma")
-pos_3 = l.insert_before(pos_2,"Olgur")
-pos_4 = l.insert_after(pos_2,"PLS olgur")
-#[None,Olgur,Sigma,PLS olgur,None]
 
-print(l)
+# pos_1 = Position(l.tail) # WTF ??
 
-# l.remove(pos_2)
+# # l.insert_before(pos_0,25)
+# pos_2 = l.insert_before(pos_1,"Sigma")
+# pos_3 = l.insert_before(pos_2,"Olgur")
+# pos_4 = l.insert_after(pos_2,"PLS olgur")
+# #[None,Olgur,Sigma,PLS olgur,None]
+
 # print(l)
 
-# print(l.front())
-# print(l.back())
+# # l.remove(pos_2)
+# # print(l)
 
-# l.push_front("ég veit ekki")
+# # print(l.front())
+# # print(l.back())
+
+# # l.push_front("ég veit ekki")
+# # print(l)
+# # l.push_back("ég veit")
+# # print(l)
+# l.pop_back()
 # print(l)
-# l.push_back("ég veit")
+# l.pop_front()
 # print(l)
-l.pop_back()
-print(l)
-l.pop_front()
-print(l)
 
 # pos_3 = l.insert_before(pos_1,"Sigma_W")
 # l.insert_before(pos_2,"Yippy")

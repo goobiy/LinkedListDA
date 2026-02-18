@@ -20,7 +20,7 @@ class Deque:
         Returns the number of elements in the deque.
         :return: Number of elements.
         """
-        ...
+
         return len(self.list)
 
     def __str__(self):
@@ -28,7 +28,7 @@ class Deque:
         Returns the string representation of the deque.
         :return: String representation.
         """
-        ...
+        
         return str(self.list)
 
     def is_empty(self):
