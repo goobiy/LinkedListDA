@@ -33,7 +33,7 @@ class Queue:
         """
         Returns True if queue is empty, otherwise False.
         """
-        
+
         return len(self.list) == 0
 
     def front(self):

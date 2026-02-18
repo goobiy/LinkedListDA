@@ -6,10 +6,10 @@ from queue import Queue
 
 l = DLList()
 
-# q = Queue(l)
+q = Queue(l)
 
-# q.enqueue(5)
-# print(q)
+q.enqueue(5)
+print(q)
 
 
 # pos_1 = Position(l.tail) # WTF ??

@@ -1,7 +1,9 @@
 # Choose the one most appropriate of the following ADT for your implementation.
-import stack
-import queue
-import deque
+from stack import Stack
+from queue import Queue
+from deque import Deque
+from dll import DLList
+from sll import SLList
 
 def match_brackets(s: str) -> bool:
     """
@@ -17,29 +19,30 @@ def match_brackets(s: str) -> bool:
         "]b ["   <--- close with ] before opening
         "{{ a }"   <-- missing }
     """
-    count_1 = 0
-    count_2 = 0
-    count_3 = 0
-    count_4 = 0
-    count_5 = 0
-    count_6 = 0
+
+    my_list = SLList()
+    stack = Stack(my_list)
 
     for i in s:
-        # i = str(i)
-        # if i == "(":
-        #     count_1 += 1
-        # elif i == ")":
-        #     count_2 += 1
-        # elif i == "[":
-        #     count_3 += 1
-        # elif i == "]":
-        #     count_4 += 1
-        # elif i == "{":
-        #     count_5 += 1
-        # elif i == "}":
-        #     count_6 += 1
+        if stack.is_empty() and i in ")]}":
+            continue
+        if i in "([{":
+            stack.push(i)
+        else:
+            if i == ")":
+                if "(" == stack.top():
+                    stack.pop()
+                    continue
+            elif i == "]":
+                if "[" == stack.top():
+                    stack.pop()
+                    continue
+            elif i == "}":
+                if "{" == stack.top():
+                    stack.pop()
+                    continue
 
-        return (count_1 == count_2) and (count_3 == count_4) and (count_5 == count_6)
+    return stack.is_empty()
 
 
 def main():
