@@ -36,6 +36,7 @@ class DLList:
         Implemented as part of the iterator interface to allow: for ... in A
         :return: Iterator object.
         """
+
         return NodeIterator(self.head)
     
     def __str__(self) -> str:
@@ -53,6 +54,7 @@ class DLList:
                 continue
             elems.append(str(node.item))
             node = node.next
+
         return '[' + ', '.join(elems) + ']'
 
     def __len__(self) -> int:
@@ -90,6 +92,7 @@ class DLList:
         :param item:Element to insert
         :return: Position of inserted element
         """
+
         original = self.__validator(pos)
 
         return self.__insert_beween(original, item, original.next)
@@ -103,6 +106,7 @@ class DLList:
         :param item:Element to insert
         :return: Position of inserted element
         """
+
         original = self.__validator(pos)
 
         return self.__insert_beween(original.prev, item, original)
@@ -113,6 +117,7 @@ class DLList:
         :param pos: Position of element to remove.
         :return: Element deleted
         """
+
         self.__validator(pos)
         
         node_to_delete = pos.node
@@ -136,6 +141,7 @@ class DLList:
         :param item: New element to replace the existing one.
         :return: The element replaced (formerly at position)
         """
+
         old_item = pos.node.item
 
         pos.node.item = item
@@ -146,8 +152,10 @@ class DLList:
         """
         Return position of the element at the head of the list if list non-empty, or None if list is empty.
         """
+
         if self.size == 0:
             return None
+
         return Position(self.head.next)
 
 
@@ -155,14 +163,17 @@ class DLList:
         """
         Return position of the element at the end of list if list non-empty, or None if list is empty.
         """
+
         if self.size == 0:
             return None
+
         return Position(self.tail.prev)
         
     def prev_pos(self, pos: Position) -> Position | None:
         """
         Return position before 'pos', or None if already at front of list.
         """
+
         prev_node = pos.node.prev
         
         if prev_node is None:
@@ -182,11 +193,20 @@ class DLList:
         return Position(next_node)
 
     def __make_position(self, node: Node):
+        """
+        Returns the position of the given node.
+        Returns None if the list empty.
+        """
+
         if node is self.head or node is self.tail:
             return None
+
         return Position(node)
 
     def __insert_beween(self, predecessor: Node, item, successor: Node):
+        """
+        Inserts a node between two other nodes already in the list.
+        """
 
         new_node = Node(predecessor, item, successor)
 
@@ -196,11 +216,10 @@ class DLList:
         successor.prev = new_node
         predecessor.next = new_node
 
-        
 
         self.size += 1
         return self.__make_position(new_node)
-    
+
     def __validator(self, pos: Position) -> Node:
 
         if not isinstance(pos, Position):
@@ -224,8 +243,10 @@ class DLList:
         Time complexity: O(1)
         :return: If list non-empty, the front element, otherwise trows an exception.
         """
+
         if self.is_empty():
             raise IndexError("The DLL is empty")
+
         return self.head.next.item
 
     def back(self):
@@ -234,8 +255,10 @@ class DLList:
         Time complexity: O(1)
         :return: If list non-empty, the back element, otherwise trows an exception.
         """
+
         if self.is_empty():
             raise IndexError("The DLL is empty")
+
         return self.tail.prev.item
 
     def push_front(self, item):
@@ -255,9 +278,10 @@ class DLList:
         Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
+
         if self.is_empty():
             raise IndexError("The list is empty")
-        
+
         self.remove(Position(self.head.next))
 
     def push_back(self, item):
@@ -267,6 +291,7 @@ class DLList:
         :param item: element to insert
         :return: None
         """
+
         tail_pos = Position(self.tail)
 
         self.insert_before(tail_pos, item)
@@ -278,6 +303,7 @@ class DLList:
         Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
+
         if self.is_empty():
             raise IndexError("The list is empty")
         

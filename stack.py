@@ -15,6 +15,7 @@ class Stack:
         Returns number of elements in the stack.
         :return: Number of elements.
         """
+
         return len(self._lst)
 
     def __str__(self):
@@ -22,6 +23,7 @@ class Stack:
         Returns a string representation of the stack.
         :return: String representation.
         """
+
         return str(self._lst)
 
     def is_empty(self):
@@ -29,6 +31,7 @@ class Stack:
         Returns True if the stack is empty.
         :return: True if empty, otherwise false.
         """
+
         return self._lst.is_empty()
 
     def top(self):
@@ -36,6 +39,7 @@ class Stack:
         Returns the top element of the stack (without removing it).
         :return: Top element
         """
+
         return self._lst.front()
 
     def pop(self):
@@ -43,6 +47,7 @@ class Stack:
         Removes the top element of the stack.
         :return: None, throws an exception if empty.
         """
+
         self._lst.pop_front()
 
     def push(self, item):
@@ -51,5 +56,6 @@ class Stack:
         :param item: Element to insert.
         :return:  None
         """
+
         self._lst.push_front(item)
 

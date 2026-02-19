@@ -53,6 +53,7 @@ class Deque:
         Inserts the element to the right (top) of the deque.
         :return: None
         """
+
         self.list.push_back(item)
 
     def appendleft(self, item):
@@ -60,6 +61,7 @@ class Deque:
         Inserts the element to the left (bottom) of the deque.
         :return: None
         """
+
         self.list.push_front(item)
 
     def pop(self):
@@ -67,6 +69,7 @@ class Deque:
         Removes the element at the right (top) of the deque.
         :return: None. Raises an exception if empty.
         """
+
         self.list.pop_back()
 
     def popleft(self):
@@ -74,5 +77,6 @@ class Deque:
         Removes the element at the left (bottom) of the deque.
         :return: None. Raises an exception if empty.
         """
+        
         self.list.pop_front()
 

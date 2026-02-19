@@ -16,6 +16,7 @@ class SLList:
         Constructor.
         Time complexity: O(1)
         """
+
         self._head = None
         self._tail = None
         self._len = 0
@@ -25,6 +26,7 @@ class SLList:
         Implemented as part of the iterator interface to allow: for ... in A
         :return: Iterator object.
         """
+
         return NodeIterator(self._head)
 
     def __str__(self):
@@ -33,11 +35,13 @@ class SLList:
         Time complexity: O(n)
         :return: The string representation.
         """
+
         elems = []
         node = self._head
         while node is not None:
             elems.append(str(node.item))
             node = node.next
+
         return '[' + ', '.join(elems) + ']'
 
     def __len__(self):
@@ -46,6 +50,7 @@ class SLList:
         Time complexity: O(1)
         :return: Number of elements in the list.
         """
+
         return self._len
 
     def is_empty(self):
@@ -54,6 +59,7 @@ class SLList:
         Time complexity: O(1)
         :return: True if empty, otherwise false
         """
+
         return self._head is None  # could alternatively check _tail is None, or _len is 0.
 
     def front(self):
@@ -62,6 +68,7 @@ class SLList:
         Time complexity: O(1)
         :return: If list non-empty, the front element, otherwise trows an exception.
         """
+
         if self.is_empty():
             raise IndexError('front called on an empty list')
         return self._head.item
@@ -72,6 +79,7 @@ class SLList:
         Time complexity: O(1)
         :return: If list non-empty, the back element, otherwise trows an exception.
         """
+
         if self.is_empty():
             raise IndexError('back called on an empty list')
         return self._tail.item
@@ -83,6 +91,7 @@ class SLList:
         :param item: element to insert
         :return: None
         """
+
         old_front = self._head
     
         new_node = Node(item, old_front)
@@ -101,6 +110,7 @@ class SLList:
         Time complexity: O(1)
         :return: None, but trows an exception if list empty.
         """
+
         if self._head is None:
             raise IndexError("The SLL is empty")
         
@@ -140,6 +150,7 @@ class SLList:
         Time complexity: O(n)
         :return: None, but trows an exception if list empty.
         """
+
         if self._tail is None:
             raise IndexError("The SLL is empty")
         
@@ -154,7 +165,6 @@ class SLList:
         while current_node.next != self._tail:
             current_node = current_node.next
 
-        
         current_node.next = None
         self._tail = current_node
         self._len -= 1
