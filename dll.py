@@ -206,9 +206,6 @@ class DLList:
         if not isinstance(pos, Position):
             raise TypeError("the position must me a Position type")
         
-        # if pos.container is not self:
-        #     raise ValueError("the position does not belong to this container")
-        
         if pos.node is None:
             raise ValueError("the position is no longer valid")
         

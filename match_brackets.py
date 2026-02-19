@@ -1,9 +1,7 @@
 # Choose the one most appropriate of the following ADT for your implementation.
-from stack import Stack
+import stack
 from queue import Queue
 from deque import Deque
-from dll import DLList
-from sll import SLList
 
 def match_brackets(s: str) -> bool:
     """
@@ -20,35 +18,35 @@ def match_brackets(s: str) -> bool:
         "{{ a }"   <-- missing }
     """
 
-    my_list = SLList()
-    stack = Stack(my_list)
+    my_list = stack.sll.SLList()
+    _stack = stack.Stack(my_list)
 
     for i in s:
-        if stack.is_empty() and i in ")]}":
+        if _stack.is_empty() and i in ")]}":
             return False
         if i in "([{":
-            stack.push(i)
+            _stack.push(i)
         else:
             if i == ")":
-                if "(" == stack.top():
-                    stack.pop()
+                if "(" == _stack.top():
+                    _stack.pop()
                     continue
                 else:
                     return False    # a mismatch like [)
             elif i == "]":
-                if "[" == stack.top():
-                    stack.pop()
+                if "[" == _stack.top():
+                    _stack.pop()
                     continue
                 else:
                     return False
             elif i == "}":
-                if "{" == stack.top():
-                    stack.pop()
+                if "{" == _stack.top():
+                    _stack.pop()
                     continue
                 else:
                     return False
 
-    return stack.is_empty()
+    return _stack.is_empty()
 
 def main():
     name = 'brackets.txt'
